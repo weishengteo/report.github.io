@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Report</title>
+
+</head>
+<!-- Links for MDL -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<!-- Links for dataTable -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+<style>
+  #myInput {
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+
+  #myTable {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+  }
+
+  #myTable th, #myTable td {
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
+  }
+
+  #myTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd;
+  }
+
+  #myTable tr.header, #myTable tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+  }
+
+  .centerImage
+  {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+  }
+
+  #centereditem {text-align: center;}
+
+  #stockdocpicker { display: none }
+
+  #sodocpicker { display: none }
+
+  #podocpicker { display: none }
+
+  .mdl-textfield__input{
+    width:500px;
+    display: inline-block;
+  }
+
+  .toolbar {
+    float: left;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .LockOn {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 105%;
+    height: 105%;
+    background-color:white;
+    vertical-align:bottom;
+    padding-top: 20%;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+    font-size:large;
+    color:blue;
+    font-style:italic;
+    font-weight:400;
+    background-image: url("http://cdn.lowgif.com/full/4cc179357c1a95d2-.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+</style>
+<body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+
+  <!-- Always shows a header, even in smaller screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Report Generator/Viewer</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="">Temp</a>
+          <a class="mdl-navigation__link" href="">Temp</a>
+          <a class="mdl-navigation__link" href="">Temp</a>
+          <a class="mdl-navigation__link" href="">Temp</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Temp</a>
+        <a class="mdl-navigation__link" href="">Temp</a>
+        <a class="mdl-navigation__link" href="">Temp</a>
+        <a class="mdl-navigation__link" href="">Temp</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <img src="https://www.insitusales.com/wp-content/uploads/2020/03/undraw_report_mx0a.png" alt="Main picture" class="centerImage" width="500">
+      <br><br>
+
+      <div id="centereditem">
+        <!-- File upload section -->
+        <p><b>Import Files:</b></p>
+        <div class="form-inline">
+          Stock List Full Details: &nbsp;
+          <input class="mdl-textfield__input" placeholder="File Name..." type="text" id="uploadStockDoc" readonly>
+          <input type="file" id="stockdocpicker" accept=".csv,application/vnd.ms-excel,.xlt,application/vnd.ms-excel,.xla,application/vnd.ms-excel,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.xltx,application/vnd.openxmlformats-officedocument.spreadsheetml.template,.xlsm,application/vnd.ms-excel.sheet.macroEnabled.12,.xltm,application/vnd.ms-excel.template.macroEnabled.12,.xlam,application/vnd.ms-excel.addin.macroEnabled.12,.xlsb,application/vnd.ms-excel.sheet.binary.macroEnabled.12">
+          <label for="stockdocpicker" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Choose File
+          </label>
+        </div><br><br>
+
+        <div class="form-inline">
+          Purchasing Orders: &nbsp;
+          <input class="mdl-textfield__input" placeholder="File Name..." type="text" id="uploadPoDoc" readonly>
+          <input type="file" id="podocpicker" accept=".csv,application/vnd.ms-excel,.xlt,application/vnd.ms-excel,.xla,application/vnd.ms-excel,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.xltx,application/vnd.openxmlformats-officedocument.spreadsheetml.template,.xlsm,application/vnd.ms-excel.sheet.macroEnabled.12,.xltm,application/vnd.ms-excel.template.macroEnabled.12,.xlam,application/vnd.ms-excel.addin.macroEnabled.12,.xlsb,application/vnd.ms-excel.sheet.binary.macroEnabled.12">
+          <label for="podocpicker" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Choose File
+          </label>
+        </div><br><br>
+
+        <div class="form-inline">
+          Sales Orders: &nbsp;
+          <input class="mdl-textfield__input" placeholder="File Name..." type="text" id="uploadSoDoc" readonly>
+          <input type="file" id="sodocpicker" accept=".csv,application/vnd.ms-excel,.xlt,application/vnd.ms-excel,.xla,application/vnd.ms-excel,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.xltx,application/vnd.openxmlformats-officedocument.spreadsheetml.template,.xlsm,application/vnd.ms-excel.sheet.macroEnabled.12,.xltm,application/vnd.ms-excel.template.macroEnabled.12,.xlam,application/vnd.ms-excel.addin.macroEnabled.12,.xlsb,application/vnd.ms-excel.sheet.binary.macroEnabled.12">
+          <label for="sodocpicker" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Choose File
+          </label>
+        </div><br><br>
+
+        <input type="text" id="myInput" onkeyup="searchByCode()" placeholder="Search by stock code..">
+
+        <div id="dataviewer"></div>
+      </div>
+    </main>
+  </div>
+
+</body>
+<!-- Loading Screen, hidden by default -->
+<div id="coverScreen"  class="LockOn"></div>
+<script src="test2.js"></script>
+</html>
