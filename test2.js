@@ -280,7 +280,7 @@ function displayTable(){
               ],
               "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
           } );
-          $("div.toolbar").html('&nbsp;&nbsp;&nbsp;&nbsp;<b> #Note: Copy, CSV, Excel, PDF, and Print buttons work on the current page</b>');
+          $("div.toolbar").html('&nbsp;&nbsp;&nbsp;&nbsp;<b> #Note: Copy, CSV, Excel, PDF, and Print buttons work on the current state of the table</b>');
           hideLoading();
         }
 
