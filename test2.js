@@ -56,6 +56,8 @@ function importFile(evt) {
         if (track == "stock"){
           for (let i = 1; i < contents["Item"].length - 1; i++){
             // console.log("yes")
+            if(contents["Item"][i].length <= 1){continue;}
+
             stockresult[contents["Item"][i][0]] = contents["Item"][i];
             if (description[contents["Item"][i][1]]){
               description[contents["Item"][i][1]].push(contents["Item"][i][0]);
@@ -170,7 +172,6 @@ function displayTable(){
     output += '<table id="myTable"><thead><tr class="header"><th style="width:10%;">Number</th><th style="width:10%;">Stock Code</th><th style="width:10%;">Description</th><th style="width:10%;">Size</th><th style="width:10%;">Current Stock</th><th style="width:10%;">Indent PO</th><th style="width:10%;">ETA</th>'
     output += '<th style="width:10%;">Total Stock</th><th style="width:10%;">Total SO</th><th style="width:10%;">Balance Stock</th></tr></thead><tbody>'
     let last = Object.keys(stockresult)[Object.keys(stockresult).length-1];
-    // console.log(last);
 
     for(desc in description){
       for(let j = 0; j < description[desc].length; j++){
@@ -238,6 +239,7 @@ function displayTable(){
         output += "</tr>"
         num++;
 
+        // console.log(i == last)
         if (i == last){
           output += "</tbody>"
           output += "</table>"
